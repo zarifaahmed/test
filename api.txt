@@ -1,0 +1,40 @@
+The I in API it stands for interface.
+
+Think about when you go to a restaurant when you go to a restaurant you want food.
+You don't want to talk with the server the waiter although you do.
+You don't want to talk with a chef although you kind of do to some extent.
+
+How does the knowledge of your food get to the chef.
+
+And the answer is via the server or the waiter.
+So the server or the waiter is the interface between you and the chef.
+We could take that a step further and think the chef is an interface between the server and the food
+
+server knows nothing about cooking and knows nothing about what the chef does the only thing the server
+
+is doing is asking a person the chef something and then food magically appears.
+If you were the server you would think the chef is an interface between you and some magical food producing
+
+The A and the P in API. It stands for application programming.
+
+and now that gets a bit more meaning it's an interface which enables communication and you can use that
+enablement you can use that new found communication to do programming of your applications.
+
+**How do you use web API
+two main types of web api:
+
+SOAP and REST
+Soap fallen off the radar recently.
+
+REST: stands for representational state transfer.
+Rest is a way of organizing and exposing an API to the outside world.
+Twitter gives us a way of interacting with Twitter and that is at rest.
+
+Finally the rest API should be a uniform interface.
+And what that means is that your client the computer doesn't have to always communicate with the same
+server.
+
+And to remember it is just an interaction between client server is just an interface between a client
+
+HTTP > Stands for hypertext transfer protocol
+Uniform Resource identifier the website you're requesting.
