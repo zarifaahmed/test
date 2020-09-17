@@ -1,0 +1,386 @@
+http 
+	-Get
+	*everytime enter the webpage is  get reqquest to the server  via HTTP
+	*when Get request using with form seen in url
+	-Post
+	-Put
+	-Delete
+HTTP header field
+	METHOD/path or url/protocol
+	General
+		Request URL - for ex. company/{id}/branch
+		Request Method - get, post ,put, delete
+		Status code - soon
+		Remote adress -IP of the remote computer
+		Referrer policy -
+	Response
+		Server /for security ->nginx, Apache, Lighttpd
+		Set-cookies - 
+		Content-type - for ex. html, css, json, xml
+		Content-length - 
+		Date - 
+	Request
+		Cookies -
+		Accept-xxx - char, lang, codes
+		Content-type -   for ex. html, css, json, xml
+		Content-length -
+		Authorization - 
+		User-Agent - 
+	HTTP Status Codes
+		1xx informational(request received/process is continuing)
+		2xx success 
+		3xx
+	----------------------------------------------------------------------
+	
+React notes
+	
+		var topic = "JavaScript"
+		if (topic) {
+			var topic = "React"
+			console.log('block', topic) // block React
+		}
+		console.log('global', topic) // global React    
+		
+		let topic = "JavaScript"
+		if (topic) {
+			let topic = "React"
+			console.log('block', topic) // block React
+		}
+		----------------------------------------------------
+		console.log('global', topic) // global JavaScript
+	Can create new variables with help of other object keys
+		var sandwich = {
+			bread: "dutch crunch",
+			meat: "tuna",
+			cheese: "swiss",
+			toppings: ["lettuce", "tomato", "mustard"]
+		}
+		var {bread, meat} = sandwich
+		console.log(bread, meat) // dutch crunch tuna
+		bread = "garlic"
+		meat = "turkey"
+		console.log(bread) // garlic
+		console.log(meat) // turkey
+		console.log(sandwich.bread, sandwich.meat) // dutch crunch tuna
+
+Destructuring Assignment
+
+		var lordify = regularPerson => {
+			console.log(`${regularPerson.firstname} of Canterbury`)
+		}
+		
+		///////
+		var regularPerson = {
+			firstname: "Bill",
+			lastname: "Wilson"
+		 }
+		lordify(regularPerson) 
+
+		/////// By destructuring firstname, we declare that
+		we will only use the firstname variable
+		var lordify = ({firstname}) => {
+			console.log(`${firstname} of Canterbury`)
+		}
+		lordify(regularPerson) 
+		
+		Values can also be destructured from arrays.
+		var [firstResort] = ["Kirkwood", "Squaw", "Alpine"]
+		console.log(firstResort) // Kirkwood
+		
+		var [,,thirdResort] = ["Kirkwood", "Squaw", "Alpine"]
+		console.log(thirdResort) // Alpine
+		Later in this section, we’ll take this 
+	
+	
+Object Literal Enhancement	 - opposite of destructuring
+		var name = "Tallac"
+		var elevation = 9738
+		var funHike = {name,elevation}
+		console.log(funHike) // {name: "Tallac", elevation: 9738}
+			
+	// NEW
+		const skier = {
+		 name,
+		 sound,
+		 powderYell() {
+		 let yell = this.sound.toUpperCase()
+		 console.log(`${yell} ${yell} ${yell}!!!`)
+		 },
+		 speed(mph) {
+		 this.speed = mph
+		 console.log('speed:', mph)
+		 }
+		}
+		Object literal enhancement allows us to pull global variables into objects and reduces
+		typing by making the function keyword unnecessary.
+
+The Spread Operator(...)
+	1. combine arrays
+		var peaks = ["Tallac", "Ralston", "Rose"]
+		var canyons = ["Ward", "Blackwood"]
+		var tahoe = [...peaks, ...canyons] //[["Tallac", "Ralston", "Rose"], ["Ward", "Blackwood"]]
+		console.log(tahoe.join(', ')) // Tallac, Ralston, Rose, Ward, Blackwood
+	
+	2. take last element of arrays
+		var peaks = ["Tallac", "Ralston", "Rose"]
+		var [last] = peaks.reverse() // reverse main array
+		console.log(last) // Rose
+		console.log(peaks.join(', ')) // Rose, Ralston, Tallac
+			
+		var peaks = ["Tallac", "Ralston", "Rose"]
+		var [last] = [...peaks].reverse() //not change main array
+		console.log(last) // Rose
+		console.log(peaks.join(', ')) // Tallac, Ralston, Rose
+	3. get rest of array elements
+		var lakes = ["Donner", "Marlette", "Fallen Leaf", "Cascade"]
+		var [first, ...rest] = lakes
+		console.log(rest.join(", ")) // "Marlette, Fallen Leaf, Cascade"
+	
+	*var [start, ...remaining] = args
+	 var [finish, ...stops] = remaining.reverse()
+
+	4.Apply to objects
+		var morning = {
+		 breakfast: "oatmeal",
+		 lunch: "peanut butter and jelly"
+		}
+		var dinner = "mac and cheese"
+		var backpackingMeals = {
+		 ...morning,
+		 dinner
+		}
+		console.log(backpackingMeals) // { breakfast: "oatmeal",
+									 // lunch: "peanut butter and jely
+									// dinner: "mac and cheese"}
+	
+	
+	Classes
+	
+	function Vacation(destination, length) {
+	 this.destination = destination
+	 this.length = length
+	}
+	Vacation.prototype.print = function() {
+	 console.log(this.destination + " | " + this.length + " days")
+	}
+	var maui = new Vacation("Maui", 7)
+	maui.print() // Maui | 7 days
+	////////////////////////////////////////	
+		
+	class Vacation {
+
+	 constructor(destination, length) {
+	 this.destination = destination
+	 this.length = length
+	 }
+
+	 print() {
+	 console.log(`${this.destination} will take ${this.length} days.`)
+	 }
+
+	}	
+	
+	const trip = new Vacation("Santiago, Chile", 7)
+	trip.print() // Chile will take 7 days.
+	
+	
+	
+	class Expedition extends Vacation {
+
+	 constructor(destination, length, gear) {
+	 super(destination, length)
+	 this.gear = gear
+	 }
+
+	 print() {
+	 super.print()
+	 console.log(`Bring your ${this.gear.join(" and your ")}`)
+	 }
+	}
+	const trip = new Expedition("Mt. Whitney", 3,
+								["sunglasses", "prayer flags", "camera"])
+	trip.print()
+	// Mt. Whitney will take 3 days.
+	// Bring your sunglasses and your prayer flags and your camera
+	
+In JavaScript, functions are variables
+	var log = function(message) {
+	 console.log(message)
+	};
+	 OR
+	const log = message => console.log(message)
+	
+	log("In JavaScript functions are variables")
+	//////////////////////////////////////////
+	
+	const obj = {
+		message: "They can be added to objects like variables",
+		log(message) {
+			console.log(message)
+		 }
+		}
+	obj.log(obj.message)
+	
+	const messages = [
+		 "They can be inserted into arrays",
+		 message => console.log(message),
+		"like variables",
+		 message => console.log(message)
+		]
+		messages[1](messages[0]) // They can be inserted into arrays
+		messages[3](messages[2]) // like variables
+
+				
+JavaScript functions are firstclass citizens. 
+This means that functions can do the same things that variables can do.
+
+They can also be returned from other functions, just like variables:
+	var createScream = function(logger) {
+		return function(message) {
+		logger(message.toUpperCase() + "!!!")
+	 }
+	}
+	const scream = createScream(message => console.log(message))
+	scream('functions can be returned from other functions')
+	scream('createScream returns a function')
+	scream('scream invokes that returned function')
+	
+	// FUNCTIONS CAN BE RETURNED FROM OTHER FUNCTIONS!!!
+	// CREATESCREAM RETURNS A FUNCTION!!!
+	// SCREAM INVOKES THAT RETURNED FUNCTION!!!
+	
+	with arrows :
+	const createScream = logger => message =>
+	logger(message.toUpperCase() + "!!!")
+	
+	Imperative Versus Declarative	
+
+	 Declarative programming is a style of programming where applications
+are structured in a way that prioritizes describing what should happen over defining
+how it should happen.
+
+	Imperative programming, or a style of programming that is only concerned with how to achieve
+results with code.
+
+
+Make string URL-friendly:
+	Imperative:
+		var string = "This is the midday show with Cheryl Waters";
+		var urlFriendly = "";
+		for (var i=0; i<string.length; i++) {
+		 if (string[i] === " ") {
+		 urlFriendly += "-";
+		 } else {
+		 urlFriendly += string[i];
+		 }
+		}
+		console.log(urlFriendly);
+		
+	Declarative:
+		const string = "This is the mid day show with Cheryl Waters"
+		const urlFriendly = string.replace(/ /g, "-")
+		console.log(urlFriendly)
+		
+Immutable functions:is to be unchangeable. In a functional pro‐
+gram, data is immutable. It never changes.
+	for example. not immutable
+	let color_lawn = {
+	 title: "lawn",
+	 color: "#00FF00",
+	  rating: 0
+	}
+	function rateColor(color, rating) {
+		color.rating = rating
+		return color
+	}
+	console.log(rateColor(color_lawn, 5).rating) // 5
+	console.log(color_lawn.rating) // 5
+
+	immutable
+	var rateColor = function(color, rating) {
+		return Object.assign({}, color, {rating:rating})
+	}
+	console.log(rateColor(color_lawn, 5).rating) // 5
+	console.log(color_lawn.rating) // 4
+			
+		OR
+
+	const rateColor = (color, rating) =>
+	 ({
+	 ...color,
+	 rating
+	 })
+	 
+/////////////////////////////////////////////////////////
+	for example. not immutable
+	let list = [
+		{ title: "Rad Red"},
+		{ title: "Lawn"},
+		{ title: "Party Pink"}
+	]
+
+	var addColor = function(title, colors) {
+		colors.push({ title: title })
+		return colors;
+	}
+	console.log(addColor("Glam Green", list).length) // 4
+	console.log(list.length) // 4
+	immutable
+	const addColor = (title, array) => array.concat({title})
+	console.log(addColor("Glam Green", list).length) // 4
+	console.log(list.length) // 3 
+	
+	OR
+	
+	const addColor = (title, list) => [...list, {title}]
+Pure function: is a function that returns a value that is computed based on its argu‐
+ments. Pure functions take at least one argument and always return a value or
+another function.
+	*if function cause side effects as changing DOM,  this impure
+		const frederick = {
+			name: "Frederick Douglass",
+			canRead: false,
+			canWrite: false
+		}
+		const selfEducate = person =>
+		 ({
+			...person,
+			canRead: true,
+			canWrite: true
+		 })
+		console.log( selfEducate(frederick) )
+		console.log( frederick )
+		// {name: "Frederick Douglass", canRead: true, canWrite: true}
+		// {name: "Frederick Douglass", canRead: false, canWrite: false}
+					
+ Try to follow these three rules:
+1. The function should take in at least one argument.
+2. The function should return a value or another function.					
+3. The function should not change or mutate any of its arguments.
+
+	const schools = [
+	 "Yorktown",
+	 "Washington & Lee",
+	 "Wakefield"
+	]
+	const cutSchool = (cut, list) =>
+		list.filter(school => school !== cut)
+		
+	console.log(cutSchool("Washington & Lee", schools).join(" * "))
+	// "Yorktown * Wakefield"
+	console.log(schools.join("\n"))
+	// Yorktown
+	// Washington & Lee
+	// Wakefield
+
+	const highSchools = schools.map(school => `${school} High School`)
+	console.log(highSchools.join("\n"))
+	// Yorktown High School
+	// Washington & Lee High School
+	// Wakefield High School
+	console.log(schools.join("\n"))
+	// Yorktown
+	// Washington & Lee
+	// Wakefield
+	
+			

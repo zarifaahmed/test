@@ -1,0 +1,260 @@
+| Code | Reason-Phrase                 | Defined in...            |
+   +------+-------------------------------+--------------------------+
+   | 100  | Continue                      | Section 6.2.1            |
+   | 101  | Switching Protocols           | Section 6.2.2            |
+   | 200  | OK                            | Section 6.3.1            |
+   | 201  | Created                       | Section 6.3.2            |
+   | 202  | Accepted                      | Section 6.3.3            |
+   | 203  | Non-Authoritative Information | Section 6.3.4            |
+   | 204  | No Content                    | Section 6.3.5            |
+   | 205  | Reset Content                 | Section 6.3.6            |
+   | 206  | Partial Content               | Section 4.1 of [RFC7233] |
+   | 300  | Multiple Choices              | Section 6.4.1            |
+   | 301  | Moved Permanently             | Section 6.4.2            |
+   | 302  | Found                         | Section 6.4.3            |
+   | 303  | See Other                     | Section 6.4.4            |
+   | 304  | Not Modified                  | Section 4.1 of [RFC7232] |
+   | 305  | Use Proxy                     | Section 6.4.5            |
+   | 307  | Temporary Redirect            | Section 6.4.7            |
+   | 400  | Bad Request                   | Section 6.5.1            |
+   | 401  | Unauthorized                  | Section 3.1 of [RFC7235] |
+   | 402  | Payment Required              | Section 6.5.2            |
+   | 403  | Forbidden                     | Section 6.5.3            |
+   | 404  | Not Found                     | Section 6.5.4            |
+   | 405  | Method Not Allowed            | Section 6.5.5            |
+   | 406  | Not Acceptable                | Section 6.5.6            |
+   | 407  | Proxy Authentication Required | Section 3.2 of [RFC7235] |
+   | 408  | Request Timeout               | Section 6.5.7            |
+   | 409  | Conflict                      | Section 6.5.8            |
+   | 410  | Gone                          | Section 6.5.9            |
+   | 411  | Length Required               | Section 6.5.10           |
+   | 412  | Precondition Failed           | Section 4.2 of [RFC7232] |
+   | 413  | Payload Too Large             | Section 6.5.11           |
+   | 414  | URI Too Long                  | Section 6.5.12           |
+   | 415  | Unsupported Media Type        | Section 6.5.13           |
+   | 416  | Range Not Satisfiable         | Section 4.4 of [RFC7233] |
+   | 417  | Expectation Failed            | Section 6.5.14           |
+   | 426  | Upgrade Required              | Section 6.5.15           |
+   | 500  | Internal Server Error         | Section 6.6.1            |
+   | 501  | Not Implemented               | Section 6.6.2            |
+   | 502  | Bad Gateway                   | Section 6.6.3            |
+   | 503  | Service Unavailable           | Section 6.6.4            |
+   | 504  | Gateway Timeout               | Section 6.6.5            |
+   | 505  | HTTP Version Not Supported    | Section 6.6.6            |
+   +------+-------------------------------+--------------------------+
+Informational 1xx
+
+   The 1xx (Informational) class of status code indicates an interim
+   response for communicating connection status or request progress
+   prior to completing the requested action and sending a final
+   response. 1xx responses are terminated by the first empty line after
+   the status-line (the empty line signaling the end of the header
+   section).  Since HTTP/1.0 did not define any 1xx status codes, a
+   server MUST NOT send a 1xx response to an HTTP/1.0 client.
+
+   A client MUST be able to parse one or more 1xx responses received
+   prior to a final response, even if the client does not expect one.  A
+   user agent MAY ignore unexpected 1xx responses.
+
+   A proxy MUST forward 1xx responses unless the proxy itself requested
+   the generation of the 1xx response.  For example, if a proxy adds an
+   "Expect: 100-continue" field when it forwards a request, then it need
+   not forward the corresponding 100 (Continue) response(s).
+
+6.2.1.  100 Continue
+
+   The 100 (Continue) status code indicates that the initial part of a
+   request has been received and has not yet been rejected by the
+   server.  The server intends to send a final response after the
+   request has been fully received and acted upon.
+
+   When the request contains an Expect header field that includes a
+   100-continue expectation, the 100 response indicates that the server
+   wishes to receive the request payload body, as described in
+   Section 5.1.1.  The client ought to continue sending the request and
+   discard the 100 response.
+
+   If the request did not contain an Expect header field containing the
+   100-continue expectation, the client can simply discard this interim
+   response.
+
+6.2.2.  101 Switching Protocols
+
+   The 101 (Switching Protocols) status code indicates that the server
+   understands and is willing to comply with the client's request, via
+   the Upgrade header field (Section 6.7 of [RFC7230]), for a change in
+   the application protocol being used on this connection.  The server
+
+
+
+The status-code element is a three-digit integer code giving the
+result of the attempt to understand and satisfy the request.
+The Hypertext Transfer Protocol (HTTP) is a stateless application-
+level protocol for distributed, collaborative, hypertext information systems.
+
+| GET     | Transfer a current representation of the target | 4.3.1 |
+|         | resource.                                       |       |
+| HEAD    | Same as GET, but only transfer the status line  | 4.3.2 |
+|         | and header section.                             |       |
+| POST    | Perform resource-specific processing on the     | 4.3.3 |
+|         | request payload.                                |       |
+| PUT     | Replace all current representations of the      | 4.3.4 |
+|         | target resource with the request payload.       |       |
+| DELETE  | Remove all current representations of the       | 4.3.5 |
+|         | target resource.                                |       |
+| CONNECT | Establish a tunnel to the server identified by  | 4.3.6 |
+|         | the target resource.                            |       |
+| OPTIONS | Describe the communication options for the      | 4.3.7 |
+|         | target resource.                                |       |
+| TRACE   | Perform a message loop-back test along the path | 4.3.8 |
+|         | to the target resource.
+
+
+
+
+
+
+
+Fielding & Reschke           Standards Track                   [Page 50]
+
+RFC 7231             HTTP/1.1 Semantics and Content            June 2014
+
+
+   MUST generate an Upgrade header field in the response that indicates
+   which protocol(s) will be switched to immediately after the empty
+   line that terminates the 101 response.
+
+   It is assumed that the server will only agree to switch protocols
+   when it is advantageous to do so.  For example, switching to a newer
+   version of HTTP might be advantageous over older versions, and
+   switching to a real-time, synchronous protocol might be advantageous
+   when delivering resources that use such features.
+
+6.3.  Successful 2xx
+
+   The 2xx (Successful) class of status code indicates that the client's
+   request was successfully received, understood, and accepted.
+
+6.3.1.  200 OK
+
+   The 200 (OK) status code indicates that the request has succeeded.
+   The payload sent in a 200 response depends on the request method.
+   For the methods defined by this specification, the intended meaning
+   of the payload can be summarized as:
+
+   GET  a representation of the target resource;
+
+   HEAD  the same representation as GET, but without the representation
+      data;
+
+   POST  a representation of the status of, or results obtained from,
+      the action;
+
+   PUT, DELETE  a representation of the status of the action;
+
+   OPTIONS  a representation of the communications options;
+
+   TRACE  a representation of the request message as received by the end
+      server.
+
+   Aside from responses to CONNECT, a 200 response always has a payload,
+   though an origin server MAY generate a payload body of zero length.
+   If no payload is desired, an origin server ought to send 204 (No
+   Content) instead.  For CONNECT, no payload is allowed because the
+   successful result is a tunnel, which begins immediately after the 200
+   response header section.
+
+   A 200 response is cacheable by default; i.e., unless otherwise
+   indicated by the method definition or explicit cache controls (see
+   Section 4.2.2 of [RFC7234]).
+
+
+HTTP Status Codes
+Registration Procedure(s)
+IETF Review
+Reference
+[RFC7231]
+Note
+1xx: Informational - Request received, continuing process
+2xx: Success - The action was successfully received, understood, and accepted
+3xx: Redirection - Further action must be taken in order to complete the request
+4xx: Client Error - The request contains bad syntax or cannot be fulfilled
+5xx: Server Error - The server failed to fulfill an apparently valid request
+
+Available Formats
+
+CSV
+Value 	Description 	Reference
+100	Continue	[RFC7231, Section 6.2.1]
+101	Switching Protocols	[RFC7231, Section 6.2.2]
+102	Processing	[RFC2518]
+103	Early Hints	[RFC8297]
+104-199	Unassigned
+200	OK	[RFC7231, Section 6.3.1]
+201	Created	[RFC7231, Section 6.3.2]
+202	Accepted	[RFC7231, Section 6.3.3]
+203	Non-Authoritative Information	[RFC7231, Section 6.3.4]
+204	No Content	[RFC7231, Section 6.3.5]
+205	Reset Content	[RFC7231, Section 6.3.6]
+206	Partial Content	[RFC7233, Section 4.1]
+207	Multi-Status	[RFC4918]
+208	Already Reported	[RFC5842]
+209-225	Unassigned
+226	IM Used	[RFC3229]
+227-299	Unassigned
+300	Multiple Choices	[RFC7231, Section 6.4.1]
+301	Moved Permanently	[RFC7231, Section 6.4.2]
+302	Found	[RFC7231, Section 6.4.3]
+303	See Other	[RFC7231, Section 6.4.4]
+304	Not Modified	[RFC7232, Section 4.1]
+305	Use Proxy	[RFC7231, Section 6.4.5]
+306	(Unused)	[RFC7231, Section 6.4.6]
+307	Temporary Redirect	[RFC7231, Section 6.4.7]
+308	Permanent Redirect	[RFC7538]
+309-399	Unassigned
+400	Bad Request	[RFC7231, Section 6.5.1]
+401	Unauthorized	[RFC7235, Section 3.1]
+402	Payment Required	[RFC7231, Section 6.5.2]
+403	Forbidden	[RFC7231, Section 6.5.3]
+404	Not Found	[RFC7231, Section 6.5.4]
+405	Method Not Allowed	[RFC7231, Section 6.5.5]
+406	Not Acceptable	[RFC7231, Section 6.5.6]
+407	Proxy Authentication Required	[RFC7235, Section 3.2]
+408	Request Timeout	[RFC7231, Section 6.5.7]
+409	Conflict	[RFC7231, Section 6.5.8]
+410	Gone	[RFC7231, Section 6.5.9]
+411	Length Required	[RFC7231, Section 6.5.10]
+412	Precondition Failed	[RFC7232, Section 4.2][RFC8144, Section 3.2]
+413	Payload Too Large	[RFC7231, Section 6.5.11]
+414	URI Too Long	[RFC7231, Section 6.5.12]
+415	Unsupported Media Type	[RFC7231, Section 6.5.13][RFC7694, Section 3]
+416	Range Not Satisfiable	[RFC7233, Section 4.4]
+417	Expectation Failed	[RFC7231, Section 6.5.14]
+418-420	Unassigned
+421	Misdirected Request	[RFC7540, Section 9.1.2]
+422	Unprocessable Entity	[RFC4918]
+423	Locked	[RFC4918]
+424	Failed Dependency	[RFC4918]
+425	Too Early	[RFC8470]
+426	Upgrade Required	[RFC7231, Section 6.5.15]
+427	Unassigned
+428	Precondition Required	[RFC6585]
+429	Too Many Requests	[RFC6585]
+430	Unassigned
+431	Request Header Fields Too Large	[RFC6585]
+432-450	Unassigned
+451	Unavailable For Legal Reasons	[RFC7725]
+452-499	Unassigned
+500	Internal Server Error	[RFC7231, Section 6.6.1]
+501	Not Implemented	[RFC7231, Section 6.6.2]
+502	Bad Gateway	[RFC7231, Section 6.6.3]
+503	Service Unavailable	[RFC7231, Section 6.6.4]
+504	Gateway Timeout	[RFC7231, Section 6.6.5]
+505	HTTP Version Not Supported	[RFC7231, Section 6.6.6]
+506	Variant Also Negotiates	[RFC2295]
+507	Insufficient Storage	[RFC4918]
+508	Loop Detected	[RFC5842]
+509	Unassigned
+510	Not Extended	[RFC2774]
+511	Network Authentication Required	[RFC6585]
+512-599	Unassigned

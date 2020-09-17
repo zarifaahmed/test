@@ -1,0 +1,129 @@
+Github, gitlab, 
+
+SSH Ve HTTPS
+
+SSH: kod teleb edir, 
+
+HTTPS: oldugu zaman senden termnialda kod isteyir, buda more securedir..
+
+ilk once repo yaradirsan githubda:
+Repository name: "ad qoyursan"
+description elave edirsen:
+public or private edirsen
+
+Initialize this repository with a README >>buna click et README yaransin deye
+add .gitignore ise >> Python secirsen
+add .licesnse ise >>  MIT licesnce secirsen 
+g
+git init >>empyty repo yaradir proyektin icinde 
+
+git remote add origin git@github.com:sabuhish/"yaratdigin reponunun adi" >>
+>>> ssh key ile alirsan onu 
+
+git fetch >> Bu command gitdeki remote ile local arasindaki 
+problem olub olmamasini check edir.
+
+git pull origin master -> Eger remote repository bosh deyilse icinde evvelceden
+teyin olunmush fayllar varsa bu commandi run edirik. 
+Gitdeki deyishiklikleri ozune cekir.
+git status >> Hal hazirda deyishiklik olub olmadigini yoxluyur.
+git branch >> hans branchda oldugumuzu yoxlayir
+
+git =merge branch_name >>kimse deyisiklik elese diger branch onu gebul edir o adamdan
+
+git push -f >> mecburi gonderecek 
+
+git add . >> Bu command yeni yaradilmish fayllari gite add edir, noqte hamsini 
+demekdir
+git commit -m "Mesajin adi" >>Bu command Commit yaradir eger deyishiklik varsa
+git commit -am "test" >eger yeni file yaratmamisan bu hem add hemde commit edir
+git branch branchname >> Bu command localda yeni branch yaradir.
+git checkout change >> Bu command Gitde movcud change branchina kecirdir
+git checkout -b admin-py-change >> Bu command Gitde avtomatik branch yaradir ve 
+hemin brancha kecirdir ozunu 
+
+git pull request 
+
+fork  deyisiklik elemek eleme ucuudur
+
+git log >> neqder comit varsa gosterir sene hamsini
+
+
+git clone:
+
+***
+biz ne deyisiklik etdik munisin twiwter apinda:
+evvelce deysiklikler edirdik, 
+ondan sonra push edirdik indi her kes masterde pull request gonderir. 
+
+git commit -am "test" >>git push >>
+***
+
+git status: elediyin deyisiklikleri gosterir sene
+
+git branch: bu sene butun brachlari gosterir
+
+git branch changes: bu sene changes adli bir branch yaradir master elave olaraq	
+
+git checkout changes: bununla sen changes branchina gedirsen.
+
+git checkout -b sebuhi :bu bir branch yaradir sene sebuhi adli, ve ona kecirsen
+
+git checkout: gezirisen oralarda 
+
+git add --all: yazdgin deyisiklikleri bracha add edir
+
+git commit -m: deyisiklikleri gonderir.
+
+git pull origin master: butun deyisiklikleri cekir gitden, push olunanlari
+
+git push -u origin changes: bu gonderir sene, 
+deyisikliklerden sonra novbeit is burudr
+
+git push: 
+
+git push origin master: deyisiklikleri sen gonderirsen repirsotye
+
+git pull:
+
+git remote -v:
+
+issue ve fix:
+Atl info software developper sabah 11 de qeyd edirem 
+celil memquliuza 102 rus city pioint 
+8 ci mertebe, reception 
+
+git init: 
+
+git commit -m "neyse birsey": deyisiklikleri localda edirsen 
+
+git remote -v
+
+git diff: elediyin deyisikleri snee cixardir.
+
+git add -A :deyisiklikleri sene modify eliyir
+
+
+
+git init >>
+
+touch .gitingnore >> ignore file yaradir
+simple file add etmek guratari fileari
+git reset >> geri qaytarir deyisklikleri getmeksdem
+
+git reset file name
+
+git log etdiyin commitleri hashlarin verir
+
+git diff elediyin deysikleriki goster
+git add -add
+
+git push -u origin cal
+
+git branch --merged
+
+git branch --merged
+
+$ git branch -d cal  >>silecek
+git branch -a
+git merge >> masterle merge elesin

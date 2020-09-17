@@ -1,0 +1,25 @@
+React is a JavaScript library for building user interfaces
+	-component based , each  has props and states
+	-using ES6 (class instead of prototype)
+	-JSX(HTML inside JS)
+	-components
+		- functional components
+		if there is no state, only take props, and constant
+		- class-based components
+
+	props 
+		send data fro one component to another(data transfer)
+		All React components must act like pure functions with respect to their props.
+		(*pure function  - do not attempt to change their inputs, and always return the same result for the same inputs.)
+		
+	state:
+		define component's situation .for ex. onclicked
+		can send state to another component with props
+		
+Virtual DOM :
+	1.create copy of virtual DOM
+	2.compare with old one
+	3.render only changed component on real DOM
+	increase performance;
+	
+State management
