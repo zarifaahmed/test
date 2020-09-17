@@ -5,7 +5,7 @@ SSH Ve HTTPS
 SSH: kod teleb edir, 
 
 HTTPS: oldugu zaman senden termnialda kod isteyir, buda more securedir..
-
+test
 ilk once repo yaradirsan githubda:
 Repository name: "ad qoyursan"
 description elave edirsen:
